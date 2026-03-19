@@ -45,3 +45,40 @@ lista
 # Saída: 
 # ['Elemento zero', 'Alterado', 'python', 2, 'novo elemento']
 ```
+
+## Trabalhando com tuplas
+Tuplas são 1) ordenadas e 2) imutáveis.
+
+Note que listas também são ordenadas, mas são mutáveis. Tuplas não mudam.
+
+```python
+# Declarando uma tupla:
+t = 123, 234, 'oi'
+t
+# Saída:
+# (123, 234, 'oi')
+
+# Acessando um elemento da tupla:
+t[2]
+# Saída: 
+# 'oi'
+
+t[1] = 'alterado'
+# Saída: TypeError: 'tuple' object does not support item assignment
+t.append('alterado')
+# Saída: AttributeError: 'tuple' object has no attribute 'append'
+
+# Criando uma tupla aninhada:
+v = t, lista
+type(v)
+# Saída: <class 'tuple'>
+v
+# Saída: 
+# ((123, 234, 'oi'), ['Alterado', 'python', 2, 'novo elemento'])
+# Note que é uma tupla de dois elementos, sendo o primeiro uma tupla aninhada e o segundo uma lista.
+```
+
+> Note que para criar uma tupla os parênteses são opcionais:
+> ```python
+> tupla = 123, 234, 'oi'
+> ```
