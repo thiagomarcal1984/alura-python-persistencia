@@ -28,3 +28,20 @@ lista
 # Saída: 
 # ['Alterado', 'python', 2]
 ```
+## Adicionando elementos na lista
+1. Usando o método `append`:
+```python
+lista = ['Alterado', 'python', 2]
+lista.append('novo elemento')
+lista
+# Saída:
+# ['Alterado', 'python', 2, 'novo elemento']
+```
+2. Usando o método `insert` (com dois parâmetros, sendo o primeiro a posição na lista e o segundo o elemento a ser inserido):
+```python
+lista = ['Alterado', 'python', 2, 'novo elemento']
+lista.insert(0, 'Elemento zero')
+lista
+# Saída: 
+# ['Elemento zero', 'Alterado', 'python', 2, 'novo elemento']
+```
