@@ -82,3 +82,32 @@ v
 > ```python
 > tupla = 123, 234, 'oi'
 > ```
+
+## Explorando dicionários
+* Dicionários são 1) não ordenados e 2) mutáveis. 
+* Diferente de tuplas, dicionários são mutáveis. 
+* Diferente das listas, dicionários não são ordenados.
+* Dicionários funcionam como um mapeamento/armazenamento de par chave/valor.
+* Dicionários são muito usados para criar arquivos no formato JSON.
+
+```python
+# Criando um dicionário:
+telefones = {
+    'joao': 911112222,
+    'leo' : 933334444
+}
+telefones
+# Saída:
+# {'joao': 911112222, 'leo': 933334444}
+
+# Acessando um item do dicionário `telefones` a partir da chave `joao`:
+telefones['joao']
+# Saída: 
+# 911112222
+
+# Acrescentando um item chave/valor ao dicionário `telefones`:
+telefones['elena'] = 955556666
+telefones
+# Saída: 
+# {'joao': 911112222, 'leo': 933334444, 'elena': 955556666}
+```
