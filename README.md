@@ -111,3 +111,35 @@ telefones
 # Saída: 
 # {'joao': 911112222, 'leo': 933334444, 'elena': 955556666}
 ```
+
+## Técnicas de iteração
+Declaração das variáveis necessárias aos exemplos:
+```python
+lista = ['Elemento zero', 'Alterado', 'python', 2, 'novo elemento']
+v = ((123, 234, 'oi'), ['Alterado', 'python', 2, 'novo elemento'])
+telefones = {'joao': 911112222, 'leo': 933334444, 'elena': 955556666}
+```
+1. Iterando com o loop for sobre uma lista ou uma tupla:
+```python
+for i in lista:
+    print(i)
+    
+for i in v:
+    print(i)
+```
+
+2. Iterando com o loop for sobre uma dicionário:
+```python
+# Iterando sobre as chaves usando o método `.keys()`
+for chave in telefones.keys():
+    print(f'K: {chave}')
+
+# Iterando sobre os valores usando o método `.values()`
+for valor in telefones.values():
+    print(f'K: {valor}')
+
+# Iterando sobre os itens usando o método `.items()`
+for chave, valor in telefones.items():
+    print(f'K: {chave}; V: {valor}')
+```
+> Note que, ao iterar sobre um dicionário usando método `.items()` as variáveis temporárias do loop são duas ao invés de uma. São duas por causa do par chave/valor.
