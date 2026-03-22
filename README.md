@@ -160,3 +160,28 @@ with open('dados.txt', 'w') as f:
 with open('dados.txt', 'r') as f:
     print(f.read())
 ```
+
+## Gravando e manipulando arquivos csv
+```python
+with open('dados.txt', 'a') as f: # `a` é o modo de append.
+    f.write('ultima linha')
+```
+
+Para gravar/ler csv, usamos os construtores `writer` ou `reader` do módulo `csv`:
+```python
+import csv
+
+# Escrevendo o arquivo csv.
+with open('dados.csv', 'w', newline='') as f:
+    # Ao fornecer `newline=''`, evitamos a inserção de uma linha
+    # adicional a cada escrita com o método `escritor.writerow`.
+    escritor = csv.writer(f) # Não se esqueça de fornecer o arquivo.
+    escritor.writerow(['nome', 'idade'])
+    escritor.writerow(['Ana', '32'])
+
+# Lendo o arquivo csv.
+with open('dados.csv') as f: 
+    leitor = csv.reader(f) # Não se esqueça de fornecer o arquivo.
+    for linha in leitor:
+        print(linha) # Imprime a lista correspondente ao conteúdo da linha.
+```
