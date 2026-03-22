@@ -143,3 +143,20 @@ for chave, valor in telefones.items():
     print(f'K: {chave}; V: {valor}')
 ```
 > Note que, ao iterar sobre um dicionário usando método `.items()` as variáveis temporárias do loop são duas ao invés de uma. São duas por causa do par chave/valor.
+
+# Gravação e Manipulação de arquivos
+## Lidando com arquivos txt
+A função `open`, usada para criar, ler e escrever arquivos, possui dois parâmetros:
+
+1. o nome do arquivo; e 
+2. o modo de interação com o arquivo (`r` para leitura, `w` para escrita etc.).
+
+```python
+# escrever um arquivo com a função open()
+with open('dados.txt', 'w') as f:
+    f.write('Olá, mundo') # Retorna o número de chars escritos.
+
+# lendo um arquivo INTEIRO.
+with open('dados.txt', 'r') as f:
+    print(f.read())
+```
