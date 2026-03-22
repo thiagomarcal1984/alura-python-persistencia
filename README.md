@@ -214,3 +214,22 @@ with open('dados.json') as f:
 > 3. Problemas na concorrência;
 > 4. Falta de segurança e integridade;
 > 5. Escalabilidade.
+
+## Praticando a leitura e escrita de arquivos
+Exercício para escrita de arquivos:
+```python
+# input_data.py
+nome = input('Digite seu nome: ')
+idade = input('Digite sua idade: ')
+
+with open('input_data.txt', 'a') as f:
+    f.write(f'Nome: {nome}\n')
+    f.write(f'Idade: {idade}\n')
+```
+Exercício para leitura de arquivos:
+```python
+# read_data.py
+with open('input_data.txt', 'r') as f:
+    for linha in f:
+        print(linha)
+```
