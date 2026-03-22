@@ -185,3 +185,32 @@ with open('dados.csv') as f:
     for linha in leitor:
         print(linha) # Imprime a lista correspondente ao conteúdo da linha.
 ```
+## Criando e modificando arquivos json
+Assim como com o CSV, o trabalho sobre arquivos JSON dependem de um módulo próprio (no caso, `json`). 
+
+O método para escrever dados no formato json é `json.dump`.
+
+```python
+import json
+
+dados = {
+    'nome': 'Ana',
+    'idade': 32,
+    'enderecos': ['a', 'b'],
+}
+
+# Escrevendo o json com `json.dump`:
+with open('dados.json', 'w') as f:
+    json.dump(dados, f)
+
+# Lendo o json com `json.load`:
+with open('dados.json') as f:
+    dados_lidos = json.load(f)
+    print(dados_lidos)
+```
+> Problemas com o uso de arquivos:
+> 1. Não possuem estrutura relacional;
+> 2. Dificuldade na busca;
+> 3. Problemas na concorrência;
+> 4. Falta de segurança e integridade;
+> 5. Escalabilidade.
