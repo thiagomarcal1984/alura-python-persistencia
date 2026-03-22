@@ -233,3 +233,15 @@ with open('input_data.txt', 'r') as f:
     for linha in f:
         print(linha)
 ```
+
+# Banco de dados
+## Entendendo o que é um banco de dados
+- Bancos SQL (relacionais): os dados são organizados em linhas de tabelas;
+- Bancos NoSQL (não relacionais): os dados são organizados como dicionários/mapas.
+
+| Característica | SQL (Relacional) | NoSQL (Não Relacional)
+|-|-|-
+| Modelo de dados | Tabela com colunas fixas | Documentos, chave-valor
+| Esquema (ex. colunas/campos) | Rígido |Flexível
+| Relacionamentos | Nativo | Embutido ou manuais
+| Exemplos de uso | ERPs, bancos | Apps web, redes sociais
