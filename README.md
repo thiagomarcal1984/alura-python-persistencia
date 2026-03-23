@@ -286,3 +286,27 @@ print(cursor.fetchall())
 
 conn.close()
 ```
+## Bancos de dados não relacionais
+Conceitos de bancos de dados não relacionais:
+- Documento
+- Coleção (agrupamento de entradas que referenciam os documentos)
+- ID (cada entrada tem um)
+- Relacionamentos embutidos
+
+```python
+# db_mongo.py
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://localhost:27017/')
+db = client['escola']
+estudantes = db['estudantes']
+
+estudantes.insert_one({
+    'nome': 'João', 
+    'idade': 20, 
+})
+
+for estudante in estudantes.find():
+    print(estudante)
+# Saída: {'_id': ObjectId('69c08c2878aa769178e524ee'), 'nome': 'João', 'idade': 20}
+```
