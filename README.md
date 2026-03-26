@@ -350,3 +350,38 @@ cursor.execute("""
 # Confirmar a criação das tabelas.
 conn.commit()
 ```
+## Como escrever e ler dados no DB
+Código de escrita no banco:
+```python
+# write_db.py
+import sqlite3
+
+conn = sqlite3.connect('escola.db')
+cursor = conn.cursor()
+
+cursor.execute(
+    "INSERT INTO estudantes(nome, idade) VALUES (?, ?)",
+    ("Joana", 16) # Parâmetros para evitar SQL Injection.
+)
+
+conn.commit()
+conn.close()
+```
+
+Código de leitura no banco:
+```python
+# read_db.py
+import sqlite3
+
+conn = sqlite3.connect('escola.db')
+cursor = conn.cursor()
+
+cursor.execute("SELECT * FROM estudantes")
+
+# Recuperação do que o cursor executou.
+estudantes = cursor.fetchall()
+
+[ print(estudante) for estudante in estudantes ]
+
+conn.close()
+```
