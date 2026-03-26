@@ -310,3 +310,9 @@ for estudante in estudantes.find():
     print(estudante)
 # Saída: {'_id': ObjectId('69c08c2878aa769178e524ee'), 'nome': 'João', 'idade': 20}
 ```
+
+# Manipulação de Dados com SQL em SQLite
+## Comandos básicos
+Os comandos do SQLite não são diferentes do SQL. Comandos como `CREATE TABLE`, `INSERT INTO`, `SELECT` etc.
+
+No curso criaremos duas entidades: disciplinas e estudantes.
