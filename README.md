@@ -385,3 +385,67 @@ estudantes = cursor.fetchall()
 
 conn.close()
 ```
+## Praticando a manipulação de dados com SQL
+Atualizando o banco:
+```python
+# update_db.py
+import sqlite3
+
+conn = sqlite3.connect('escola.db')
+cursor = conn.cursor()
+
+cursor.execute(
+    "UPDATE estudantes SET nome = ? WHERE id = ?",
+    ("Leandro", 2)
+)
+
+conn.commit()
+conn.close()
+```
+
+Criando uma disciplina:
+```python
+# write_db.py
+import sqlite3
+
+conn = sqlite3.connect('escola.db')
+cursor = conn.cursor()
+
+# cursor.execute(
+#     """
+#         INSERT INTO estudantes(nome, idade) \
+#         VALUES (?, ?)
+#     """,
+#     ("Joana", 16)
+# )
+
+cursor.execute(
+    """
+        INSERT INTO disciplinas(estudante_id, nome_disciplina) \
+        VALUES (?, ?)
+    """,
+    (1, "Matemática")
+)
+
+conn.commit()
+conn.close()
+```
+
+Lendo a tabela de disciplinas:
+```python
+# read_db.py
+import sqlite3
+
+conn = sqlite3.connect('escola.db')
+cursor = conn.cursor()
+
+# cursor.execute("SELECT * FROM estudantes")
+# estudantes = cursor.fetchall()
+# [ print(estudante) for estudante in estudantes ]
+
+cursor.execute("SELECT * FROM disciplinas")
+disciplinas = cursor.fetchall()
+[ print(disciplina) for disciplina in disciplinas ]
+
+conn.close()
+```
