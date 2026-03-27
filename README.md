@@ -449,3 +449,27 @@ disciplinas = cursor.fetchall()
 
 conn.close()
 ```
+## Realizando consultas e boas práticas
+
+```python
+import sqlite3
+conn = sqlite3.connect('escola.db')
+cursor = conn.cursor()
+
+cursor.execute('SELECT * FROM estudantes WHERE id = 1')
+estudante = cursor.fetchall()
+print(estudante)
+
+cursor.execute("""
+    SELECT estudantes.nome, disciplinas.nome_disciplina
+    FROM disciplinas
+    JOIN estudantes ON disciplinas.estudante_id = estudantes.id
+""")
+
+print(cursor.fetchall())
+```
+Boas práticas:
+* Use `?` para passar parâmetros;
+* Use `IF NOT EXISTS` ao criar tabelas;
+* Use `conn.commit()` para confirmar atualizações no banco;
+* Use `conn.close()` para fechar a conexão e liberar recursos.
