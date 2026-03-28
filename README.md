@@ -646,11 +646,11 @@ Quatro arquivos serão criados para o subprojeto do diretório `fastapi-proj`:
 Começando com o código do `database.py`:
 ```python
 # database.py
-from sqlalchemy import create_engine, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import declarative_base
+from sqlalchemy import create_engine # Não há sessionmaker na raiz.
+# from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-DATABASE_URL = 'postgresql:postgres:postgres//localhost/escola'
+DATABASE_URL = 'postgresql://postgres:postgres@localhost/escola'
 
 # Motor de comunicação com o banco de dados
 engine = create_engine(DATABASE_URL)
@@ -693,7 +693,7 @@ class Matricula(Base):
     )
     estudante_id = Column(
         Integer,
-        ForeignKey('estudante.id'),
+        ForeignKey('estudantes.id'),
     )
     nome_disciplina = Column(
         String(100),
@@ -768,7 +768,7 @@ def get_db():
 def create_student(
     student: schemas.EstudanteCreate, # Wrapper dos dados do estudante.
     # `db` é um objeto do tipo `Session` que depende do retorno de `get_db`.
-    db: Session = Depends(get_db), 
+    db: Session = Depends(get_db), # Não invoque a funçaõ get_db.
 ):
     # student.model_dump() é um dicionário com os campos da requisição POST.
     db_student = models.Estudante(**student.model_dump())
@@ -782,7 +782,29 @@ def create_student(
     # O modelo de resposta retorna vários registros.
     response_model=List[schemas.EstudanteResponse],
 )
-def get(db: Session = Depends(get_db())):
+def get(db: Session = Depends(get_db)): # Não invoque a funçaõ get_db.
     students = db.query(models.Estudante).all()
     return students
 ```
+## Rodando a API
+Se for usar Docker, crie uma instância com o seguinte comando: 
+
+```shell
+# Subindo o container.
+docker run -d -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=postgres postgres
+# Derrubando o container.
+docker container rm postgres --force
+```
+
+Algumas configurações ao interagir com o PostgreSQL:
+```sql
+CREATE DATABASE ESCOLA;
+ALTER USER postgres WITH PASSWORD 'postgres'; -- Por garantia, troque a senha.
+```
+
+Execute o FastAPI a partir do diretório `fastapi-proj`:
+```shell
+uvicorn main:app --reload
+```
+
+Em seguida, acesse o path `/docs` do socket aberto pelo uvicorn: http://127.0.0.1:8000/docs

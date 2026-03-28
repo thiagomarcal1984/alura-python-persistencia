@@ -34,7 +34,7 @@ def get_db():
 def create_student(
     student: schemas.EstudanteCreate, # Wrapper dos dados do estudante.
     # `db` é um objeto do tipo `Session` que depende do retorno de `get_db`.
-    db: Session = Depends(get_db), 
+    db: Session = Depends(get_db), # Não invoque a funçaõ get_db.
 ):
     # student.model_dump() é um dicionário com os campos da requisição POST.
     db_student = models.Estudante(**student.model_dump())
@@ -48,6 +48,6 @@ def create_student(
     # O modelo de resposta retorna vários registros.
     response_model=List[schemas.EstudanteResponse],
 )
-def get(db: Session = Depends(get_db())):
+def get(db: Session = Depends(get_db)): # Não invoque a funçaõ get_db.
     students = db.query(models.Estudante).all()
     return students
