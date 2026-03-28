@@ -17,7 +17,7 @@ class Estudante(Base):
         String(100),
         nullable=False,
     )
-    age = Column(Integer)
+    idade = Column(Integer)
 
 class Matricula(Base):
     __tablename__ = 'matriculas'
