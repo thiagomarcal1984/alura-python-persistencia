@@ -626,3 +626,12 @@ Executando os comandos após a alteração do arquivo `db.py`:
 (1, 'Luana', 'Matemática')
 (2, 'Lucas', 'História')
 ```
+# Persistência com PostgreSQL e FastAPI
+## Instalando dependências
+Instale as dependências do PIP usando o arquivo [requirements.txt](requirements.txt). 
+
+```shell
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
