@@ -558,3 +558,37 @@ Vamos continuar usando o interpretador:
 (1, 'Luana', 20)
 (2, 'Lucas', 22)
 ```
+## Praticando o uso do Python e SQLite
+Alterações no arquivo `db.py`:
+```python
+# db.py
+
+# Resto do código
+def criar_matricula(estudante_id, nome_disciplina):
+    with conectar() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+                INSERT INTO matriculas (estudante_id, nome_disciplina)
+                VALUES(?,?)
+            """,
+            (estudante_id, nome_disciplina)
+        )
+        conn.commit()
+
+def listar_matriculas():
+    with conectar() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM matriculas")
+        matriculas = cursor.fetchall()
+        [ print(matricula) for matricula in matriculas ]
+```
+
+Executando os comandos após a alteração do arquivo `db.py`:
+```python
+>>> exec(open('db.py').read())
+>>> criar_matricula(1, 'Matemática')
+>>> listar_matriculas()
+# Saída:
+(1, 'Matemática', 1)
+```

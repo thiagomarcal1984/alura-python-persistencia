@@ -49,3 +49,22 @@ def listar_estudantes():
         cursor.execute("SELECT * FROM estudantes")
         estudantes = cursor.fetchall()
         [ print(estudante)  for estudante in estudantes ]
+
+def criar_matricula(estudante_id, nome_disciplina):
+    with conectar() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+                INSERT INTO matriculas (estudante_id, nome_disciplina)
+                VALUES(?,?)
+            """,
+            (estudante_id, nome_disciplina)
+        )
+        conn.commit()
+
+def listar_matriculas():
+    with conectar() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM matriculas")
+        matriculas = cursor.fetchall()
+        [ print(matricula) for matricula in matriculas ]
