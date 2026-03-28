@@ -21,7 +21,7 @@ def criar_tabela_matricula():
     conn = conectar()
     cursor = conn.cursor()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS matricula(
+        CREATE TABLE IF NOT EXISTS matriculas (
             id INTEGER PRIMARY KEY, 
             nome_disciplina TEXT,
             estudante_id INTEGER,
@@ -30,3 +30,22 @@ def criar_tabela_matricula():
     ''')
     conn.commit()
     conn.close()
+
+def criar_estudante(nome, idade):
+    with conectar() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+                INSERT INTO estudantes (nome, idade)
+                VALUES (?, ?)
+            """,
+            (nome, idade)
+        )
+        conn.commit()
+
+def listar_estudantes():
+    with conectar() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM estudantes")
+        estudantes = cursor.fetchall()
+        [ print(estudante)  for estudante in estudantes ]
