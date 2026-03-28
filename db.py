@@ -65,6 +65,12 @@ def criar_matricula(estudante_id, nome_disciplina):
 def listar_matriculas():
     with conectar() as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM matriculas")
+        cursor.execute(
+            """
+                SELECT matriculas.id, estudantes.nome, matriculas.nome_disciplina
+                FROM matriculas
+                JOIN estudantes ON matriculas.estudante_id = estudantes.id
+            """
+        )
         matriculas = cursor.fetchall()
         [ print(matricula) for matricula in matriculas ]

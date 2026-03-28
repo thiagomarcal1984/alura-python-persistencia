@@ -592,3 +592,37 @@ Executando os comandos após a alteração do arquivo `db.py`:
 # Saída:
 (1, 'Matemática', 1)
 ```
+
+## Utilizando o comando JOIN
+Vamos mudar a função `listar_matriculas` para juntar duas tabelas no resultado:
+```python
+# db.py
+
+# Resto do código
+def listar_matriculas():
+    with conectar() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+                SELECT matriculas.id, estudantes.nome, matriculas.nome_disciplina
+                FROM matriculas
+                JOIN estudantes ON matriculas.estudante_id = estudantes.id
+            """
+        )
+        matriculas = cursor.fetchall()
+        [ print(matricula) for matricula in matriculas ]
+```
+
+Executando os comandos após a alteração do arquivo `db.py`:
+```python
+>>> exec(open('db.py').read())
+>>> listar_matriculas()
+# Saída:
+(1, 'Luana', 'Matemática')
+
+>>> criar_matricula(2, "História")
+>>> listar_matriculas()
+# Saída:
+(1, 'Luana', 'Matemática')
+(2, 'Lucas', 'História')
+```
