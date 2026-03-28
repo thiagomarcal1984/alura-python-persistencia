@@ -537,3 +537,24 @@ def listar_estudantes():
         estudantes = cursor.fetchall()
         [ print(estudante)  for estudante in estudantes ]
 ```
+## Demonstrando a manipulação do DB
+Um caminho para carregar as funções de um arquivo após entrar no interpretador Python:
+```shell
+>>> exec(open('db.py').read())
+```
+Agora as funções todas estão importadas no interpretador.
+
+Vamos continuar usando o interpretador:
+```python
+>>> criar_tabela_estudantes()
+>>> criar_tabela_matricula() 
+>>> criar_estudante("Luana", 20)
+>>> listar_estudantes()
+# Saída:
+(1, 'Luana', 20)
+>>> criar_estudante("Lucas", 22)
+>>> listar_estudantes()
+# Saída:
+(1, 'Luana', 20)
+(2, 'Lucas', 22)
+```
