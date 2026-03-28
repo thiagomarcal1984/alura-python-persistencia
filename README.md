@@ -635,3 +635,29 @@ python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 ```
+
+## Estruturando o projeto com database.py
+Quatro arquivos serão criados para o subprojeto do diretório `fastapi-proj`:
+1. `database.py` vai realizar as operações com o banco de dados;
+2. `main.py` vai definir as rotas e endpoints da API;
+3. `models.py` vai definir os modelos de entidades mapeados com o banco;
+4. `schemas.py` vai definir a validação dos modelos de banco de dados.
+
+Começando com o código do `database.py`:
+```python
+# database.py
+from sqlalchemy import create_engine, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.orm import declarative_base
+
+DATABASE_URL = 'postgresql:postgres:postgres//localhost/escola'
+
+# Motor de comunicação com o banco de dados
+engine = create_engine(DATABASE_URL)
+
+# Gerenciador de sessões com o engine.
+SessionLocal = sessionmaker(bind=engine)
+
+# Classe pai das entidades dos bancos de dados.
+Base = declarative_base()
+```
