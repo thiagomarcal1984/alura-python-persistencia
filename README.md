@@ -860,3 +860,36 @@ class Perfil(Base):
 ```
 > A novidade é o uso do parâmetro `uselist` na função `relationship`. Ela serve para limitar a cardinalidade do retorno do objeto relacionado (se vai ser um ou vários).
 > Outra novidade é o parâmetro `index` na função `Column`. Ela serve para criar um índice na coluna. Muito útil para campos de chave primária.
+## Criando schemas.py
+```python
+from typing import List, Optional
+from pydantic import BaseModel
+
+class Perfil(BaseModel):
+    class Config:
+        # Fazer a leitura dos atributos diretamente do modelo base.
+        from_attributes = True 
+    id: int
+    idade: int
+    endereco: str
+
+class PerfilCreate(BaseModel):
+    # O id não aparece aqui porque não é necessário para criar um novo perfil.
+    idade: int
+    endereco: str
+
+class Estudante(BaseModel):
+    class Config:
+        # Fazer a leitura dos atributos diretamente do modelo base.
+        from_attributes = True
+
+    id: int
+    nome: str
+    perfil: Optional[Perfil] = None
+
+class EstudanteCreate(BaseModel):
+    nome: str
+    email: str
+    perfil: PerfilCreate
+```
+> Nota: no curso, as classes de perfil (`Perfil` e `PerfilCreate`) foram declaradas depois das classes de estudante (`Estudante` e `EstudanteCreate`). Inverti a ordem por causa do highlighting do VS Code apontando erro de referência a classe não declarada (as classes de perfil são referenciadas antes de serem declaradas).
